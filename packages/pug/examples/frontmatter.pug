@@ -1,0 +1,22 @@
+---
+user:
+  name: user_name
+  blocked: blocked_user
+items:
+ - one
+ - two
+ - three
+---
+
+div#id.left.container(class='user user-' + name)
+  h1.title= name
+  form
+    //- unbuffered comment :)
+    // An example of attributes.
+    input(type='text' name=page.user.name value=name)
+    input(checked, type='checkbox', name=page.user.blocked)
+    input(type='submit', value='Update')
+  ul
+    each item in page.items
+      li= item
+
