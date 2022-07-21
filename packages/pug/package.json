@@ -26,6 +26,7 @@
   },
   "main": "lib",
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "pug-code-gen": "^2.0.2",
     "pug-filters": "^3.1.1",
     "pug-lexer": "^4.1.0",

@@ -21,6 +21,7 @@ var link = require('pug-linker');
 var generateCode = require('pug-code-gen');
 var runtime = require('pug-runtime');
 var runtimeWrap = require('pug-runtime/wrap');
+var matter = require('gray-matter');
 
 /**
  * Name for detection
@@ -75,6 +76,20 @@ exports.filters = {};
  */
 
 function compileBody(str, options) {
+  const page = matter(str);
+  // page.data {Object}: the object created by parsing front-matter
+  // page.content {String}: the input string, with matter stripped
+  str = page.content;
+  if(Object.keys(page.data).length > 0) {
+    str = '- let page = ' + JSON.stringify(page.data) + '\n' + str;
+    //console.info(str);
+    //options.page = {};
+    //Object.assign(options.page, page.data);
+    //if(options.globals == undefined) {
+    //  options.globals = [];
+    //}
+    //options.globals.push('page');
+  }
   var debug_sources = {};
   debug_sources[options.filename] = str;
   var dependencies = [];
